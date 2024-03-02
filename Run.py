@@ -25,7 +25,7 @@ class Feature:
     def __init__(self):
         try:
             Banner()
-            print(Panel(f"[italic white]Silahkan Masukan Link Terabox Pastikan Link Sudah Benar, Misalnya :[italic green] https://teraboxapp.com/s/?", width=57, style="bold bright_black", title=">>> Link Terabox <<<", subtitle="╭─────", subtitle_align="left"))
+            print(Panel(f"[italic white]Please enter the terabox link make sure the link is correct, for example :[italic green] https://teraboxapp.com/s/?", width=57, style="bold bright_black", title=">>> Link Terabox <<<", subtitle="╭─────", subtitle_align="left"))
             your_links = Console().input("[bold bright_black]   ╰─> ")
             if '.com/s/' in your_links:
                 self.link_kode = (your_links.split('.com/s/')[1])
@@ -36,11 +36,11 @@ class Feature:
                 else:
                     self.link_kode = self.split_link
             else:
-                print(Panel(f"[italic red]Anda Diwajibkan Memasukan Link Terabox Dengan Benar!", width=57, style="bold bright_black", title=">>> Link Tidak Benar <<<"))
+                print(Panel(f"[italic red]You must enter the terabox link correctly!", width=57, style="bold bright_black", title=">>> Incorrect Link <<<"))
                 exit()
-            print(Panel(f"[italic white]Silahkan Masukan Password Terabox Jika Tidak Ada Password Tekan Enter, Misalnya :[italic green] 123456", width=57, style="bold bright_black", title=">>> Password Terabox <<<", subtitle="╭─────", subtitle_align="left"))
+            print(Panel(f"[italic white]Please enter the Terabox password if there is no password press Enter, for example :[italic green] 123456", width=57, style="bold bright_black", title=">>> Password Terabox <<<", subtitle="╭─────", subtitle_align="left"))
             pwd = Console().input("[bold bright_black]   ╰─> ")
-            print(Panel(f"[italic white]Sedang Mengunduh Seluruh File Pastikan Jaringan Kamu Bagus Agar Tidak Error Saat Mengunduh Files!", width=57, style="bold bright_black", title=">>> Catatan <<<"))
+            print(Panel(f"[italic white]Downloading the entire file Make sure your network is good so you don't get errors when downloading files!", width=57, style="bold bright_black", title=">>> Catatan <<<"))
             self.Dapatkan_Files(self.link_kode, pwd)
         except (Exception) as e:
             print(Panel(f"[italic red]{str(e).title()}!", width=57, style="bold bright_black", title=">>> Error <<<"))
@@ -78,11 +78,11 @@ class Feature:
                         self.create_time, self.fs_id, self.filename, self.size = z['create_time'], z['fs_id'], z['filename'], z['size']
                         self.mb_size = int(self.size) / (1024 * 1024)
                         self.create_string_time = datetime.datetime.fromtimestamp(int(self.create_time)).strftime('%d/%m/%Y %H:%M:%S')
-                        print(Panel(f"""[bold white]Nama File :[bold green] {self.filename}
-[bold white]Ukuran :[bold red] {self.mb_size:.2f} MB
-[bold white]Upload Time :[bold green] {self.create_string_time}""", width=57, style="bold bright_black", title=">>> Sukses <<<"))
+                        print(Panel(f"""[bold white]File Name :[bold green] {self.filename}
+[bold white]Size :[bold red] {self.mb_size:.2f} MB
+[bold white]Upload Time :[bold green] {self.create_string_time}""", width=57, style="bold bright_black", title=">>> Successful <<<"))
                         self.Downloads_File(self.shareid, self.uk, self.sign, self.timestamp, self.fs_id, self.filename.replace(' ', '_'))
-                    Console().input("[bold white][[bold green]Selesai[bold white]]")
+                    Console().input("[bold white][[bold green]Finish[bold white]]")
                     exit()
                 else:
                     if '\'children\': []' in str(self.json_data):
@@ -91,10 +91,10 @@ class Feature:
                             self.mb_size = int(self.size) / (1024 * 1024)
                             self.create_string_time = datetime.datetime.fromtimestamp(int(self.create_time)).strftime('%d/%m/%Y %H:%M:%S')
                             print(Panel(f"""[bold white]Nama File :[bold green] {self.filename}
-[bold white]Ukuran :[bold red] {self.mb_size:.2f} MB
-[bold white]Upload Time :[bold green] {self.create_string_time}""", width=57, style="bold bright_black", title=">>> Sukses <<<"))
+[bold white]Size :[bold red] {self.mb_size:.2f} MB
+[bold white]Upload Time :[bold green] {self.create_string_time}""", width=57, style="bold bright_black", title=">>> Successful <<<"))
                             self.Downloads_File(self.shareid, self.uk, self.sign, self.timestamp, self.fs_id, self.filename.replace(' ', '_'))
-                        Console().input("[bold white][[bold green]Selesai[bold white]]")
+                        Console().input("[bold white][[bold green]Finish[bold white]]")
                         exit()
                     else:
                         for z in self.json_data['list'][0]['children']:
@@ -102,13 +102,13 @@ class Feature:
                             self.mb_size = int(self.size) / (1024 * 1024)
                             self.create_string_time = datetime.datetime.fromtimestamp(int(self.create_time)).strftime('%d/%m/%Y %H:%M:%S')
                             print(Panel(f"""[bold white]Nama File :[bold green] {self.filename}
-[bold white]Ukuran :[bold red] {self.mb_size:.2f} MB
-[bold white]Upload Time :[bold green] {self.create_string_time}""", width=57, style="bold bright_black", title=">>> Sukses <<<"))
+[bold white]Size :[bold red] {self.mb_size:.2f} MB
+[bold white]Upload Time :[bold green] {self.create_string_time}""", width=57, style="bold bright_black", title=">>> Successful <<<"))
                             self.Downloads_File(self.shareid, self.uk, self.sign, self.timestamp, self.fs_id, self.filename.replace(' ', '_'))
-                        Console().input("[bold white][[bold green]Selesai[bold white]]")
+                        Console().input("[bold white][[bold green]Finish[bold white]]")
                         exit()
             else:
-                print(Panel(f"[italic red]Tidak Bisa Mendapatkan Informasi Dari File Tersebut!", width=57, style="bold bright_black", title=">>> Gagal <<<"))
+                print(Panel(f"[italic red]Can't get information from the file!", width=57, style="bold bright_black", title=">>> Fail <<<"))
                 exit()
 
     def Downloads_File(self, shareid, uk, sign, timestamp, fs_id, filename):
@@ -161,15 +161,15 @@ class Feature:
                                 self.progress.update(self.task, completed=self.downloaded_size)
                             w.close()
                     sys.stdout.write("\033[F")
-                    print(f"[bold bright_black]   ╰─>[bold green] Sukses Mengunduh {filename}...", end='\r')
+                    print(f"[bold bright_black]   ╰─>[bold green] Successful Download {filename}...", end='\r')
                     time.sleep(2.5)
                     return (200)
                 else:
-                    print(f"[bold bright_black]   ╰─>[bold red] Tautan Unduhan Tidak Ditemukan...", end='\r')
+                    print(f"[bold bright_black]   ╰─>[bold red] Download link not found...", end='\r')
                     time.sleep(3.5)
                     return (404)
             except (RequestException) as e:
-                print(f"[bold bright_black]   ╰─>[bold red] Koneksi Anda Terputus Sedang Mengunduh Ulang...", end='\r')
+                print(f"[bold bright_black]   ╰─>[bold red] Your connection is lost and redownloading...", end='\r')
                 time.sleep(9.5)
                 self.Downloads_File(shareid, uk, sign, timestamp, fs_id, filename)
 
