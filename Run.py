@@ -69,7 +69,11 @@ class Feature:
                 'pwd': self.password,
             }
             response = r.get('https://terabox-dl.qtcloud.workers.dev/api/get-info', params = params)
-            self.json_data = json.loads(response.text)
+            try:
+                self.json_data = json.loads(response.text)
+                except json.JSONDecodeError as e:
+                    print(f"Error decoding JSON: {e}")
+                    exit()
             if '\'ok\': True' in str(self.json_data):
                 self.find_floders = re.findall('\'children\':', str(self.json_data))
                 self.shareid, self.uk, self.sign, self.timestamp = self.json_data['shareid'], self.json_data['uk'], self.json_data['sign'], self.json_data['timestamp']
